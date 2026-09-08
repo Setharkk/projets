@@ -1,112 +1,137 @@
-# Projets
+<div align="center">
 
-Une vitrine, pas un dépôt de code. Chaque projet listé ici a son propre dépôt, privé : le code appartient à mes clients ou n'est pas prêt à être lu. Ce qui suit décrit le problème traité, l'approche retenue et ce que ça a coûté d'apprendre.
+# Setharkk Growth
 
-Je suis Samir Benjaddi. J'audite des façons de travailler et j'automatise ce qui mérite de l'être, pour des artisans, des indépendants et des TPE, depuis Martigues. Le reste est sur **[setharkk-growth.fr](https://setharkk-growth.fr)**.
+### *Audit de processus et IA, pour ceux qui n'ont pas de service informatique*
+
+[![Rust](https://img.shields.io/badge/Rust-1.75%2B-orange?logo=rust&logoColor=white)](https://www.rust-lang.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)](https://python.org)
+[![Neo4j](https://img.shields.io/badge/Neo4j-5-008CC1?logo=neo4j&logoColor=white)](https://neo4j.com)
+[![Claude](https://img.shields.io/badge/Claude-Partner_Network-D97757?logo=anthropic&logoColor=white)](https://setharkk-growth.fr/certifications)
+[![Depots](https://img.shields.io/badge/D%C3%A9p%C3%B4ts-17-0f1826)]()
+
+---
+
+**Une vitrine, pas un dépôt de code.**<br/>
+Dix-sept dépôts, deux publics. Les autres appartiennent à mes clients ou ne sont pas prêts à être lus.<br/>
+Ce qui suit décrit le problème traité, l'architecture retenue, et les décisions qui ont coûté cher.
+
+**[setharkk-growth.fr](https://setharkk-growth.fr)** · Martigues, PACA et toute la France
+
+</div>
+
+---
+
+## L'écosystème en un schéma
+
+```mermaid
+flowchart TD
+    R["<b>Recherche</b><br/>ARIA · Setharkk Cortex<br/><i>Rust</i>"]
+    O["<b>Outils internes</b><br/>harnais de mesure · moteur comportemental · CRM<br/><i>Python · TypeScript</i>"]
+    C["<b>Livraison client</b><br/>agents · applications · cockpits<br/><i>TypeScript · Python · JavaScript</i>"]
+    S["<b>setharkk-growth.fr</b><br/>51 pages, validateur en intégration continue"]
+
+    R -.->|"ce que j'apprends des architectures"| C
+    O -->|"ce qui mesure et qualifie"| C
+    C -->|"études de cas anonymisées"| S
+
+    style R fill:#eef2f8,stroke:#2947c9,color:#0f1826
+    style O fill:#eef2f8,stroke:#2947c9,color:#0f1826
+    style C fill:#2947c9,stroke:#1c3390,color:#ffffff
+    style S fill:#ffffff,stroke:#7386b6,color:#0f1826
+```
 
 ---
 
 ## Recherche
 
-Deux paris à long terme sur des architectures qui ne reposent ni sur l'attention ni sur des poids pré-entraînés. Ce sont des travaux de recherche, pas des produits : je les présente comme tels.
+Deux paris longs sur des architectures qui ne reposent ni sur l'attention ni sur des poids pré-entraînés. Ce sont des travaux de recherche, présentés comme tels : l'échec est une issue admise.
 
 ### ARIA · Rust
 
-*Geometric Intelligence, a new paradigm beyond transformers.*
+> *Geometric Intelligence, a new paradigm beyond transformers.*
 
-ARIA remplace le paradigme transformeur par des **Geometric Function Units**, où la relation entre neurones est une fonction géométrique plutôt qu'une tête d'attention. Aucun bloc transformeur, aucun poids pré-entraîné, tout est construit depuis zéro.
+Remplace le paradigme transformeur par des **Geometric Function Units**, où la relation entre neurones est une fonction géométrique plutôt qu'une tête d'attention. Aucun bloc transformeur, aucun poids pré-entraîné, tout construit depuis zéro.
 
-La question posée : la géométrie différentielle peut-elle offrir une base plus expressive et mieux fondée théoriquement que l'attention ? C'est un projet de recherche ouvert, dont l'échec est une issue admise.
+La question posée : la géométrie différentielle offre-t-elle une base plus expressive et mieux fondée théoriquement que l'attention&nbsp;?
 
 ### Setharkk Cortex · Rust
 
-*Un cortex causal déterministe.*
+> *Un cortex causal déterministe.*
 
-Les concepts sont des index `u32` dans des arènes contiguës. Un automate à pile à registres parcourt un graphe discret en suivant des prédicats booléens, jamais un `argmax` sur une distribution. Quand un chemin échoue, un bit d'inhibition est **gravé définitivement** : l'erreur devient une contrainte physique que le processeur rejette en un cycle.
+| | |
+|---|---|
+| **Représentation** | Concepts en index `u32` dans des arènes contiguës |
+| **Parcours** | Automate à pile à registres suivant des prédicats booléens, jamais un `argmax` |
+| **Apprentissage d'erreur** | Bit d'inhibition **gravé définitivement** : l'erreur devient une contrainte que le processeur rejette en un cycle |
+| **Compression** | Macros réutilisables, puis schémas polymorphes |
+| **Budget** | Tranche active du chemin de décision sous **2 Mio**, donc en cache CPU |
+| **Preuve** | Convergence établie par la théorie des treillis |
 
-Le graphe se compresse en macros réutilisables, puis en schémas polymorphes. La tranche active du chemin de décision tient sous **2 Mio**, donc en cache CPU. La convergence est prouvée par la théorie des treillis.
+Succède à une version TypeScript d'environ **39 000 lignes** qui fonctionnait, mais dont quatre pathologies structurelles ont été diagnostiquées dans le code avant réécriture.
 
-Ce projet succède à une version TypeScript d'environ 39 000 lignes qui fonctionnait, mais dont quatre pathologies structurelles ont été diagnostiquées dans le code avant d'être réécrites. La décision d'architecture la plus importante est négative : ne jamais dépendre d'un modèle de langage comme oracle ni comme moteur de secours.
+La décision d'architecture la plus importante est négative : **ne jamais dépendre d'un modèle de langage** comme oracle ni comme moteur de secours.
 
 ---
 
 ## Outils internes
 
-### Harnais de vérité terrain · Python
+| Projet | Ce qu'il fait | Pile |
+|---|---|---|
+| **Harnais de vérité terrain** | Mesure ce qu'un agent de code fait réellement. Chaque tâche est déclarée **avant** la session, critère figé par empreinte ; tout est tracé ; le verdict est **externe, jamais écrit par l'agent**. Trois courbes en sortent : autonomie, interventions par heure, horizon. | Python · SQLite |
+| **Moteur de marketing comportemental** | Graphe métier d'environ 310 nœuds sur onze domaines, agents de rédaction et de profilage. | Next.js 15 · FastAPI · Neo4j |
+| **CRM de prospection ciblée** | Sourcing SIRENE, signaux BODACC, enrichissement, notation. | Flask · FastAPI · Next.js · N8N · PostgreSQL · Neo4j |
+| **Playbook commercial** | Les règles sont des requêtes, pas un document. | Cypher · Neo4j |
 
-Mesurer ce qu'un agent de code fait réellement, plutôt que ce qu'on croit qu'il fait.
-
-Chaque tâche est déclarée **avant** la session, avec son critère de réussite figé par empreinte. Tout est ensuite tracé : le brief, chaque intervention humaine, chaque appel d'outil, la durée. À la fin, la tâche reçoit un **verdict externe, jamais écrit par l'agent lui-même**.
-
-Trois courbes hebdomadaires en sortent : taux d'autonomie, interventions par heure, horizon. Chaque message envoyé en cours d'exécution compte comme une intervention, y compris la reprise après une nouvelle session. C'est volontairement sévère : une mesure indulgente ne sert à rien.
-
-Python et SQLite, aucune dépendance réseau, aucune infrastructure. Les traces sont en ajout seul.
-
-C'est le prolongement direct de ce que je vends : on ne peut pas décider quoi automatiser sans mesurer d'abord.
-
----
-
-## Public
-
-### [Setharkk](https://github.com/Setharkk/Setharkk) · Python
-
-Agent IA autonome tournant **100 % en local** sur un GPU grand public, avec mémoire long terme et graphe de connaissances. Qwen 3.5 9B, Neo4j, PostgreSQL. Aucune API cloud, aucune clé, aucune donnée qui sort. Le code est ouvert.
-
-### [facturation-paie-releases](https://github.com/Setharkk/facturation-paie-releases)
-
-Les versions publiques d'une application de facturation et de paie développée sur mesure pour un client, en Electron et TypeScript. Les binaires sont publics, la source reste privée : c'est le modèle que j'applique au travail client.
+Le harnais est le prolongement direct de ce que je vends : **on ne décide pas quoi automatiser sans mesurer d'abord.** Chaque message envoyé en cours d'exécution y compte comme une intervention, reprise de session comprise. C'est volontairement sévère, une mesure indulgente ne servirait à rien.
 
 ---
 
 ## Travail client
 
-Décrit sans nommer personne. Un client apparaît sous son nom seulement s'il l'a autorisé.
+Décrit sans nommer personne. Un client n'apparaît sous son nom que s'il l'a autorisé.
 
-**Agent expert HubSpot** · JavaScript
-Un agent qui fait le travail d'un expert HubSpot sur une base réelle : enrichissement, scoring, audit. Le principe de sécurité gouverne tout le reste : lecture libre, écriture validée, et les outils qui modifient tournent en simulation par défaut. Étude de cas publique : [setharkk-growth.fr/realisations/agent-hubspot](https://setharkk-growth.fr/realisations/agent-hubspot).
-
-**Agent de saisie pour une plateforme de gestion de formation** · JavaScript
-Connecté à une API GraphQL, il fait la saisie administrative à la place de l'humain. Onze outils de lecture, vingt outils d'écriture idempotents avec normalisation par liste blanche et vérification par relecture, validation humaine avant toute écriture, moteur agentique plafonné à quarante étapes. L'OPCO de rattachement est résolu par SIRET via l'API France compétences.
-
-**Application SaaS de facturation et de gestion commerciale** · Python, React
-Python 3.13, FastAPI, React 18, TypeScript, PostgreSQL 16.
-
-**Application de facturation, paie et dossiers** · Electron, TypeScript
-Livrée en application de bureau. Les binaires publics et le canal de mise à jour sont dans [facturation-paie-releases](https://github.com/Setharkk/facturation-paie-releases), la source reste privée.
-
-**Cockpit de pilotage pour une coach indépendante** · Next.js
-Onboarding des clientes automatisé, sur une base Notion. Next.js 16, React 19, Tailwind 4, API Notion, Claude.
-
-**Assistant socratique pour un bootcamp de formation** · TypeScript
-Accompagne les participantes sur dix sessions : comprendre la théorie, avancer sur les exercices, valider leurs réponses. Il ne fait pas le travail à leur place et ne valide aucune stratégie, c'est sa contrainte de conception. Escalades avec résolution, récapitulatif automatique, limitation de débit, rétention RGPD. Sept phases livrées et testées en conditions réelles.
-
-**Site du même programme de formation** · Next.js
+| Projet | Ce qu'il fait | Pile |
+|---|---|---|
+| **[Agent expert HubSpot](https://setharkk-growth.fr/realisations/agent-hubspot)** | Enrichissement, notation et audit sur une base réelle. Lecture libre, écriture validée, et les outils qui modifient tournent **en simulation par défaut**. | JavaScript · API HubSpot |
+| **Agent de saisie, plateforme de formation** | Onze outils de lecture, vingt outils d'écriture idempotents, normalisation par liste blanche, vérification par relecture, validation humaine avant toute écriture, moteur plafonné à quarante étapes. OPCO résolu par SIRET via France compétences. | JavaScript · GraphQL |
+| **SaaS de facturation et gestion commerciale** | Devis, factures, suivi commercial. | Python 3.13 · FastAPI · React 18 · PostgreSQL 16 |
+| **Application facturation, paie et dossiers** | Livrée en poste de travail. Binaires publics, source privée. | Electron · TypeScript |
+| **Cockpit de pilotage pour une coach** | Onboarding client automatisé sur base Notion. | Next.js 16 · React 19 · API Notion · Claude |
+| **Assistant socratique de bootcamp** | Accompagne sur dix sessions. **Il ne fait pas le travail à leur place et ne valide aucune stratégie** : c'est sa contrainte de conception. Escalades, récapitulatif automatique, limitation de débit, rétention RGPD. | TypeScript · Claude |
 
 ---
 
-## Outils et expérimentations
+## Dépôts publics
 
-**CRM de prospection ciblée** · TypeScript, Python
-Passerelle Flask pour les embeddings, l'accès SIRENE et la collecte web. Backend FastAPI pour le CRM et l'assistant. Frontend Next.js. Workflows N8N pour le sourcing SIRENE, les signaux BODACC et l'enrichissement. PostgreSQL et Neo4j en lecture seule pour les hypothèses.
+| Dépôt | |
+|---|---|
+| **[Setharkk](https://github.com/Setharkk/Setharkk)** | Agent IA autonome tournant **100 % en local** sur un GPU grand public. Mémoire long terme, graphe de connaissances. Zéro API cloud, zéro clé, zéro donnée qui sort.<br/>`Python` `Qwen 3.5 9B` `Neo4j` `PostgreSQL` |
+| **[facturation-paie-releases](https://github.com/Setharkk/facturation-paie-releases)** | Versions publiques et canal de mise à jour d'une application livrée à un client. Le modèle que j'applique au travail client : binaires publics, source privée. |
 
-**Moteur de marketing comportemental B2B** · TypeScript
-Un graphe métier Neo4j d'environ 310 nœuds répartis sur onze domaines, un frontend Next.js 15, un sidecar FastAPI pour les embeddings et le traitement du langage, le SDK Anthropic pour les agents.
+---
 
-**Playbook commercial** · Cypher
-Le playbook lui-même, écrit en Cypher sur Neo4j : les règles sont des requêtes, pas un document.
+## Le site, puisqu'il est aussi un projet
 
-**Le site setharkk-growth.fr** · HTML
-Cinquante et une pages sans aucun framework. Un validateur maison en Python vérifie à chaque poussée les liens internes morts, le parsage des JSON-LD, la correspondance mot pour mot entre les questions du `FAQPage` et le texte visible, l'unicité du H1, la cohérence du sitemap et une liste de tournures interdites. Il tourne en intégration continue et bloque la fusion.
+**[setharkk-growth.fr](https://setharkk-growth.fr)** · cinquante et une pages, aucun framework.
 
-**BrainrotArena** · Lua
-Un jeu Roblox, avec un flux de travail Rojo et Git. Pour le plaisir.
+Un validateur maison en Python vérifie à chaque poussée : liens internes morts, parsage des JSON-LD, correspondance **mot pour mot** entre les questions du `FAQPage` et le texte visible, unicité du H1, cohérence du sitemap, et une liste de tournures interdites. Il tourne en intégration continue et **bloque la fusion**.
+
+L'assistant du site est documenté comme étude de cas testable en direct : **[realisations/assistant-setharkk](https://setharkk-growth.fr/realisations/assistant-setharkk)**.
 
 ---
 
 ## Ce que vous ne verrez pas ici
 
-Aucun nom de client, aucune marque cliente, aucun chiffre d'affaires. Un client n'est nommé que s'il l'a autorisé. Les études de cas anonymisées sont sur **[setharkk-growth.fr/realisations](https://setharkk-growth.fr)**.
+Aucun nom de client, aucune marque cliente, aucun chiffre d'affaires.
+
+Les études de cas complètes, anonymisées, sont sur **[setharkk-growth.fr](https://setharkk-growth.fr)**.
 
 Si vous voulez lire du code avant de travailler avec moi, demandez : j'ouvre un accès en lecture sur un dépôt privé, au cas par cas.
 
+<div align="center">
+
 **contact@setharkk-growth.fr**
+
+</div>
