@@ -97,11 +97,28 @@ Décrit sans nommer personne. Un client n'apparaît sous son nom que s'il l'a au
 |---|---|---|
 | **[Agent expert HubSpot](https://setharkk-growth.fr/realisations/agent-hubspot)** | Neuf commandes sur une base réelle : enrichissement SIRENE, notation ICP, audit, fusion de doublons. **Toute écriture irréversible exige `--confirm`.** | JavaScript · API HubSpot |
 | **Agent de saisie, plateforme de formation** | Onze outils de lecture, vingt outils d'écriture idempotents, **validation humaine avant toute écriture**. OPCO résolu par SIRET via France compétences. | JavaScript · GraphQL |
-| **Plateforme de facturation multi-locataire** | Devis, factures, relances, fournisseurs. **Assistant IA à 41 outils** avec recherche sémantique sur pgvector. Import Excel et OCR, journal d'audit, bilingue. | Python · FastAPI · React · PostgreSQL · pgvector |
+| **Plateforme de facturation multi-locataire** | Le plus abouti des sept. Détaillé juste en dessous. | Python · FastAPI · React · PostgreSQL · pgvector |
 | **Application de bureau facturation et paie** | Factures, fiches de paie et génération de dossier de crédit. Binaires publics, source privée. | Electron · TypeScript |
 | **Tableau de bord pour une accompagnatrice indépendante** | Prise en main des nouvelles clientes automatisée, brief de séance rédigé par IA, vue d'ensemble en direct. | Next.js 16 · API Notion · Claude |
 | **Bot Slack pour un bootcamp** | Assistant socratique dans le Slack du client, sur dix séances. **Il ne fait pas le travail à la place des participantes.** Canal d'escalade privé, cloisonnement par personne. | Python · Slack Bolt · PostgreSQL · Claude |
 | **Créateur de pages de vente** | Chaque utilisatrice compose ses pages depuis un tableau de bord, puis les publie à une adresse publique. Authentification et espace d'administration. | Next.js · TypeScript · Supabase |
+
+### La plateforme de facturation, en détail
+
+Publié avec l'accord du client, qui a par ailleurs laissé un avis public sur la fiche Google de Setharkk Growth.
+
+Une entreprise de trente salariés dont la facturation ne rentrait dans aucun logiciel du marché. Le résultat est une plateforme complète, pas un formulaire de devis.
+
+| | |
+|---|---|
+| **Le métier** | Devis, factures, clients, fournisseurs, paiements, relances automatiques. Conversion d'un devis en facture en un clic. |
+| **La devise** | Gestion d'une monnaie locale à **parité fixe avec l'euro**, à côté des taux vivants. Une parité fixe ne se calcule pas comme un taux qui bouge : la confondre fausse toute la comptabilité. |
+| **L'assistant** | Un agent conversationnel à **41 outils** : création de documents, statistiques, conversion de devises, recherche. Il répond en s'appuyant sur les données réelles de l'entreprise, par recherche sémantique sur pgvector. |
+| **Les entrées** | Import des réservations depuis la plateforme métier du client par **webhook**, et reprise en masse depuis des tableurs ou des PDF scannés, avec reconnaissance de texte. |
+| **Le cadre** | Multi-locataire avec cloisonnement par société, rôles administrateur, gestionnaire et employé, invitations par courriel, **journal d'audit complet**. Interface française et anglaise, thème sombre. |
+| **Les documents** | Génération de PDF avec des gabarits personnalisables. |
+
+La leçon de ce projet : **ce qui coûte cher n'est jamais la facture, c'est tout ce qui l'entoure.** La devise, les imports, les rôles et la traçabilité représentent plus de travail que le cœur métier lui-même.
 
 ---
 
