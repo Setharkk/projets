@@ -29,7 +29,7 @@ Ce qui suit décrit le problème traité, l'architecture retenue, et les décisi
 flowchart TD
     R["<b>Recherche</b><br/>ARIA · Setharkk Cortex<br/><i>Rust</i>"]
     O["<b>Outils internes</b><br/>harnais de mesure · moteur comportemental · CRM<br/><i>Python · TypeScript</i>"]
-    C["<b>Livraison client</b><br/>agents · applications · cockpits<br/><i>TypeScript · Python · JavaScript</i>"]
+    C["<b>Livraison client</b><br/>agents · applications · tableaux de bord<br/><i>TypeScript · Python · JavaScript</i>"]
     S["<b>setharkk-growth.fr</b><br/>51 pages, validateur en intégration continue"]
 
     R -.->|"ce que j'apprends des architectures"| C
@@ -81,7 +81,7 @@ La décision d'architecture la plus importante est négative : **ne jamais dépe
 |---|---|---|
 | **Harnais de vérité terrain** | Mesure ce qu'un agent de code fait réellement. Chaque tâche est déclarée **avant** la session, critère figé par empreinte ; tout est tracé ; le verdict est **externe, jamais écrit par l'agent**. Trois courbes en sortent : autonomie, interventions par heure, horizon. | Python · SQLite |
 | **Moteur de marketing comportemental** | Graphe métier d'environ 310 nœuds sur onze domaines, agents de rédaction et de profilage. | Next.js 15 · FastAPI · Neo4j |
-| **CRM de prospection ciblée** | Sourcing SIRENE, signaux BODACC, enrichissement, notation. | Flask · FastAPI · Next.js · N8N · PostgreSQL · Neo4j |
+| **CRM de prospection ciblée** | Recherche d'entreprises via SIRENE, signaux BODACC, enrichissement, notation. | Flask · FastAPI · Next.js · N8N · PostgreSQL · Neo4j |
 | **Playbook commercial** | Les règles sont des requêtes, pas un document. | Cypher · Neo4j |
 
 Le harnais est le prolongement direct de ce que je vends : **on ne décide pas quoi automatiser sans mesurer d'abord.** Chaque message envoyé en cours d'exécution y compte comme une intervention, reprise de session comprise. C'est volontairement sévère, une mesure indulgente ne servirait à rien.
@@ -98,7 +98,7 @@ Décrit sans nommer personne. Un client n'apparaît sous son nom que s'il l'a au
 | **Agent de saisie, plateforme de formation** | Onze outils de lecture, vingt outils d'écriture idempotents, normalisation par liste blanche, vérification par relecture, validation humaine avant toute écriture, moteur plafonné à quarante étapes. OPCO résolu par SIRET via France compétences. | JavaScript · GraphQL |
 | **SaaS de facturation et gestion commerciale** | Devis, factures, suivi commercial. | Python 3.13 · FastAPI · React 18 · PostgreSQL 16 |
 | **Application facturation, paie et dossiers** | Livrée en poste de travail. Binaires publics, source privée. | Electron · TypeScript |
-| **Cockpit de pilotage pour une coach** | Onboarding client automatisé sur base Notion. | Next.js 16 · React 19 · API Notion · Claude |
+| **Tableau de bord pour une accompagnatrice indépendante** | Prise en main des nouvelles clientes automatisée, sur une base Notion. | Next.js 16 · React 19 · API Notion · Claude |
 | **Assistant socratique de bootcamp** | Accompagne sur dix sessions. **Il ne fait pas le travail à leur place et ne valide aucune stratégie** : c'est sa contrainte de conception. Escalades, récapitulatif automatique, limitation de débit, rétention RGPD. | TypeScript · Claude |
 
 ---
