@@ -58,9 +58,54 @@ Les versions publiques d'une application de facturation et de paie développée 
 
 ---
 
+## Travail client
+
+Décrit sans nommer personne. Un client apparaît sous son nom seulement s'il l'a autorisé.
+
+**Agent expert HubSpot** · JavaScript
+Un agent qui fait le travail d'un expert HubSpot sur une base réelle : enrichissement, scoring, audit. Le principe de sécurité gouverne tout le reste : lecture libre, écriture validée, et les outils qui modifient tournent en simulation par défaut. Étude de cas publique : [setharkk-growth.fr/realisations/agent-hubspot](https://setharkk-growth.fr/realisations/agent-hubspot).
+
+**Agent de saisie pour une plateforme de gestion de formation** · JavaScript
+Connecté à une API GraphQL, il fait la saisie administrative à la place de l'humain. Onze outils de lecture, vingt outils d'écriture idempotents avec normalisation par liste blanche et vérification par relecture, validation humaine avant toute écriture, moteur agentique plafonné à quarante étapes. L'OPCO de rattachement est résolu par SIRET via l'API France compétences.
+
+**Application SaaS de facturation et de gestion commerciale** · Python, React
+Python 3.13, FastAPI, React 18, TypeScript, PostgreSQL 16.
+
+**Application de facturation, paie et dossiers** · Electron, TypeScript
+Livrée en application de bureau. Les binaires publics et le canal de mise à jour sont dans [facturation-paie-releases](https://github.com/Setharkk/facturation-paie-releases), la source reste privée.
+
+**Cockpit de pilotage pour une coach indépendante** · Next.js
+Onboarding des clientes automatisé, sur une base Notion. Next.js 16, React 19, Tailwind 4, API Notion, Claude.
+
+**Assistant socratique pour un bootcamp de formation** · TypeScript
+Accompagne les participantes sur dix sessions : comprendre la théorie, avancer sur les exercices, valider leurs réponses. Il ne fait pas le travail à leur place et ne valide aucune stratégie, c'est sa contrainte de conception. Escalades avec résolution, récapitulatif automatique, limitation de débit, rétention RGPD. Sept phases livrées et testées en conditions réelles.
+
+**Site du même programme de formation** · Next.js
+
+---
+
+## Outils et expérimentations
+
+**CRM de prospection ciblée** · TypeScript, Python
+Passerelle Flask pour les embeddings, l'accès SIRENE et la collecte web. Backend FastAPI pour le CRM et l'assistant. Frontend Next.js. Workflows N8N pour le sourcing SIRENE, les signaux BODACC et l'enrichissement. PostgreSQL et Neo4j en lecture seule pour les hypothèses.
+
+**Moteur de marketing comportemental B2B** · TypeScript
+Un graphe métier Neo4j d'environ 310 nœuds répartis sur onze domaines, un frontend Next.js 15, un sidecar FastAPI pour les embeddings et le traitement du langage, le SDK Anthropic pour les agents.
+
+**Playbook commercial** · Cypher
+Le playbook lui-même, écrit en Cypher sur Neo4j : les règles sont des requêtes, pas un document.
+
+**Le site setharkk-growth.fr** · HTML
+Cinquante et une pages sans aucun framework. Un validateur maison en Python vérifie à chaque poussée les liens internes morts, le parsage des JSON-LD, la correspondance mot pour mot entre les questions du `FAQPage` et le texte visible, l'unicité du H1, la cohérence du sitemap et une liste de tournures interdites. Il tourne en intégration continue et bloque la fusion.
+
+**BrainrotArena** · Lua
+Un jeu Roblox, avec un flux de travail Rojo et Git. Pour le plaisir.
+
+---
+
 ## Ce que vous ne verrez pas ici
 
-Les projets menés pour des clients ne sont pas listés tant que le client ne l'a pas autorisé, et jamais sous un nom qui permettrait de l'identifier. Les études de cas anonymisées sont sur **[setharkk-growth.fr/realisations](https://setharkk-growth.fr)**.
+Aucun nom de client, aucune marque cliente, aucun chiffre d'affaires. Un client n'est nommé que s'il l'a autorisé. Les études de cas anonymisées sont sur **[setharkk-growth.fr/realisations](https://setharkk-growth.fr)**.
 
 Si vous voulez lire du code avant de travailler avec moi, demandez : j'ouvre un accès en lecture sur un dépôt privé, au cas par cas.
 
