@@ -82,7 +82,8 @@ La décision d'architecture la plus importante est négative : **ne jamais dépe
 | **Harnais de vérité terrain** | Mesure ce qu'un agent de code fait réellement. La tâche est déclarée **avant** la session, et le verdict est **externe, jamais écrit par l'agent**. | Python · SQLite |
 | **Moteur de marketing comportemental** | Graphe métier d'environ 310 nœuds sur onze domaines, agents de rédaction et de profilage. | Next.js 15 · FastAPI · Neo4j |
 | **CRM de prospection ciblée** | Recherche d'entreprises via SIRENE, signaux BODACC, enrichissement, notation. | Flask · FastAPI · Next.js · N8N · PostgreSQL · Neo4j |
-| **Playbook commercial** | Les règles sont des requêtes, pas un document. | Cypher · Neo4j |
+| **Playbook commercial** | Bundle installable chez le client : graphe pré-rempli de 54 nœuds, installateur PowerShell, deux skills livrés. Les règles sont des requêtes, pas un document. | Cypher · Neo4j · Docker |
+| **BrainrotArena** | Un jeu Roblox, en Rojo et Git. Un système par fichier, synchronisation incrémentale vers Studio : changer une ligne ne réécrit pas tout. | Lua · Rojo |
 
 Le harnais est le prolongement direct de ce que je vends : **on ne décide pas quoi automatiser sans mesurer d'abord.** Le critère de réussite est figé par empreinte avant le début, tout est tracé, et trois courbes en sortent chaque semaine : taux d'autonomie, interventions par heure, horizon. Chaque message envoyé en cours d'exécution compte comme une intervention, reprise de session comprise. C'est volontairement sévère, une mesure indulgente ne servirait à rien.
 
@@ -94,11 +95,11 @@ Décrit sans nommer personne. Un client n'apparaît sous son nom que s'il l'a au
 
 | Projet | Ce qu'il fait | Pile |
 |---|---|---|
-| **[Agent expert HubSpot](https://setharkk-growth.fr/realisations/agent-hubspot)** | Enrichissement, notation et audit sur une base réelle. Lecture libre, écriture validée, et les outils qui modifient tournent **en simulation par défaut**. | JavaScript · API HubSpot |
+| **[Agent expert HubSpot](https://setharkk-growth.fr/realisations/agent-hubspot)** | Neuf commandes sur une base réelle : enrichissement SIRENE, notation ICP, audit, fusion de doublons. **Toute écriture irréversible exige `--confirm`.** | JavaScript · API HubSpot |
 | **Agent de saisie, plateforme de formation** | Onze outils de lecture, vingt outils d'écriture idempotents, **validation humaine avant toute écriture**. OPCO résolu par SIRET via France compétences. | JavaScript · GraphQL |
-| **SaaS de facturation et gestion commerciale** | Devis, factures, suivi commercial. | Python 3.13 · FastAPI · React 18 · PostgreSQL 16 |
-| **Application facturation, paie et dossiers** | Livrée en poste de travail. Binaires publics, source privée. | Electron · TypeScript |
-| **Tableau de bord pour une accompagnatrice indépendante** | Prise en main des nouvelles clientes automatisée, sur une base Notion. | Next.js 16 · React 19 · API Notion · Claude |
+| **Plateforme de facturation multi-locataire** | Devis, factures, relances, fournisseurs. **Assistant IA à 41 outils** avec recherche sémantique sur pgvector. Import Excel et OCR, journal d'audit, bilingue. | Python · FastAPI · React · PostgreSQL · pgvector |
+| **Application de bureau facturation et paie** | Factures, fiches de paie et génération de dossier de crédit. Binaires publics, source privée. | Electron · TypeScript |
+| **Tableau de bord pour une accompagnatrice indépendante** | Prise en main des nouvelles clientes automatisée, brief de séance rédigé par IA, vue d'ensemble en direct. | Next.js 16 · API Notion · Claude |
 | **Bot Slack pour un bootcamp** | Assistant socratique dans le Slack du client, sur dix séances. **Il ne fait pas le travail à la place des participantes.** Canal d'escalade privé, cloisonnement par personne. | Python · Slack Bolt · PostgreSQL · Claude |
 | **Créateur de pages de vente** | Chaque utilisatrice compose ses pages depuis un tableau de bord, puis les publie à une adresse publique. Authentification et espace d'administration. | Next.js · TypeScript · Supabase |
 
